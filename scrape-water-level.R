@@ -8,10 +8,7 @@ lake_constance_zero <- 391.84
 
 # read in old -------------------------------------------------------------
 
-old_levels <- read.csv("water_level.csv") |> 
-  mutate(date = as.POSIXct(date, format= "%Y-%m-%d %H:%M")) |> 
-  filter(date < as.POSIXct("2025-07-29"))
-
+old_levels <- arrow::read_parquet("water_level.parquet")
 
 # read in new -------------------------------------------------------------
 
@@ -39,6 +36,4 @@ test_that("All dates only exist once",
 
 # export ------------------------------------------------------------------
 
-write.csv(levels,
-          "water_level.csv",
-          row.names = FALSE)
+arrow::write_parquet(levels, "water_level.parquet")

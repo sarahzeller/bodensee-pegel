@@ -4,3 +4,7 @@ The data are scraped from [Hochwassernachrichtendienst Bayern](https://www.hnd.b
 [Gewässerkundlicher Dienst Bayern](https://www.gkd.bayern.de/de/seen/wasserstand/bayern/lindau-20001001/download).
 
 They are provided under the Creative Commons Attribution 4.0 International License.
+
+## Caveat
+
+We currently delete the measurements in the hour after Daylight Savings changes.

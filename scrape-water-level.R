@@ -1,6 +1,5 @@
 library(rvest)
 library(dplyr)
-library(testthat)
 
 url <- "https://www.hnd.bayern.de/pegel/iller_lech/lindau-20001001/tabelle?methode=seewasserstand&begin=01.01.2023&setdiskr=15"
 lake_constance_zero <- 391.84
@@ -30,10 +29,9 @@ levels <- old_levels |>
   bind_rows(new_levels) |> 
   distinct()
 
-test_that("All dates only exist once",
-          expect_equal(levels$date |> unique() |> length(), 
-                       nrow(levels)))
+dates_are_unique <- levels$date |> unique() |> length() == nrow(levels)
+if(!dates_are_unique){stop("Dates are not unique")}
 
 # export ------------------------------------------------------------------
 
-arrow::write_parquet(levels, "water_level.parquet")
+write_parquet(levels, "water_level.parquet")

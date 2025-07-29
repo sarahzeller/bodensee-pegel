@@ -1,5 +1,6 @@
 library(rvest)
 library(dplyr)
+library(nanoparquet)
 
 url <- "https://www.hnd.bayern.de/pegel/iller_lech/lindau-20001001/tabelle?methode=seewasserstand&begin=01.01.2023&setdiskr=15"
 lake_constance_zero <- 391.84
@@ -7,7 +8,7 @@ lake_constance_zero <- 391.84
 
 # read in old -------------------------------------------------------------
 
-old_levels <- arrow::read_parquet("water_level.parquet")
+old_levels <- read_parquet("water_level.parquet")
 
 # read in new -------------------------------------------------------------
 

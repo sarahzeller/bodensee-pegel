@@ -21,7 +21,7 @@ jobs:
 
       - name: Run scraper script
         run: |
-          Rscript scrape-water-levels.R
+          Rscript scrape-water-level.R
 
       - name: Commit and push changes
         run: |

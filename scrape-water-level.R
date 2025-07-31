@@ -30,8 +30,13 @@ levels <- old_levels |>
   bind_rows(new_levels) |> 
   distinct()
 
-dates_are_unique <- levels$date |> unique() |> length() == nrow(levels)
-if(!dates_are_unique){stop("Dates are not unique")}
+unique_dates <- levels$date |> unique() |> length() 
+rows_levels <- nrow(levels)
+if(unique_dates != rows_levels){
+  message("Rows old levels:", nrow(old_levels), "\nRows new:", nrow(levels))
+  message("Unique dates: ", unique_dates, "\n Level nrows: ", rows_levels)
+  stop("Dates are not unique")
+  }
 
 # export ------------------------------------------------------------------
 
